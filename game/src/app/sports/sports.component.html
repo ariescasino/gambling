@@ -1,0 +1,22 @@
+<div class="pagewrapper" style="overflow-x: hidden">
+  <ng-container *ngIf="!head">
+    <app-header (ConnEvent)="conPass($event)"></app-header>
+  </ng-container>
+  <ng-container *ngIf="head">
+    <app-innerheader
+      [balance]="balance"
+      (currBal)="CurrBal($event)"
+      (ConnEvent)="conPass($event)"
+    ></app-innerheader>
+  </ng-container>
+  <div class="content">
+    <div class="sidemenu">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="content1">
+      <app-sports-sidebar></app-sports-sidebar>
+      <app-main></app-main>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

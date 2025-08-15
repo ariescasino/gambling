@@ -1,0 +1,16 @@
+.content {
+  display: flex;
+  width: calc(100vw - 240px);
+}
+.content1 {
+  display: flex;
+  width: 100%;
+}
+@media (max-width: 700px) {
+  .content1 {
+    flex-direction: column;
+  }
+  .content {
+    width: 100vw;
+  }
+}

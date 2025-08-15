@@ -1,0 +1,154 @@
+.sidebar {
+  background-color: #323738;
+  color: white;
+  padding: 20px 10px 0 10px;
+  width: 320px;
+  font-family: Arial, sans-serif;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+
+    overflow-y: visible;
+  }
+}
+
+.iconbutton {
+  padding: 10px 14px !important;
+  transform: rotate(180deg);
+}
+
+.top-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.banners {
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.banner-card {
+  background: #2e2e2e;
+  margin-bottom: 10px;
+  padding: 10px;
+  padding-bottom: 5px;
+  border-radius: 10px;
+  min-width: 130px;
+  background-image: url("../../../assets/images/sports/banner.jpeg");
+  background-size: cover;
+  background-position: center center;
+}
+
+.banner-card img {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.banner-card .title {
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.league {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px rgba(225, 225, 225, 0.1) solid;
+}
+
+.flag {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.league-text p {
+  margin: 0;
+}
+
+.country {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.tabs {
+  display: flex;
+  margin-top: 15px;
+  gap: 10px;
+  background: #292d2e;
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 6px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: rgba(225, 225, 225, 0.5);
+}
+
+.tabs button.active {
+  background-color: #323738;
+  color: white;
+}
+
+.sports-list {
+  margin-top: 15px;
+}
+
+.sport-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  align-items: center;
+}
+.sport-item .detail {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid #333;
+}
+
+.sport-item .detail .label {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.sport-item .detail .count {
+  padding: 4px 6px;
+  background-color: #333;
+  border-radius: 20px;
+}
+
+.sport-item > svg {
+  padding: 6px;
+  fill: white;
+}
+
+.highlight-live {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .highlight-live {
+    display: block;
+    margin-bottom: 6px;
+  }
+}

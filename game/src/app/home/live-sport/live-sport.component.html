@@ -1,0 +1,35 @@
+<div class="live-sports-wrapper">
+  <h3>Live Sports</h3>
+  <div class="cards">
+    <div class="match-card" *ngFor="let match of matches">
+      <div class="match-header">
+        <span class="category">{{ match.category }}</span>
+        <span class="live" *ngIf="match.isLive">🟢 Live</span>
+      </div>
+
+      <div class="teams">
+        <div class="team">
+          <img [src]="match.home.logo" alt="home team logo" />
+          <span class="name">{{ match.home.name }}</span>
+        </div>
+
+        <div class="score">
+          <span>{{ match.score }}</span>
+          <div class="status">{{ match.status }}</div>
+        </div>
+
+        <div class="team">
+          <img [src]="match.away.logo" alt="away team logo" />
+          <span class="name">{{ match.away.name }}</span>
+        </div>
+      </div>
+
+      <div class="odds">
+        <button class="odd">1 {{ match.odds.home }}</button>
+        <button class="odd">draw {{ match.odds.draw }}</button>
+        <button class="odd">2 {{ match.odds.away }}</button>
+        <button class="extra">{{ match.extra }}</button>
+      </div>
+    </div>
+  </div>
+</div>

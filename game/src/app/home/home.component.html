@@ -1,0 +1,2668 @@
+<div class="pagewrapper">
+  <ng-container *ngIf="!head">
+    <app-header (ConnEvent)="conPass($event)"></app-header>
+  </ng-container>
+  <ng-container *ngIf="head">
+    <app-innerheader
+      (UserEvent)="CurrBal($event)"
+      (ConnEvent)="conPass($event)"
+    ></app-innerheader>
+  </ng-container>
+  <div class="gamewrapper">
+    <div class="sidemenu">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="gameinnerwhl">
+      <div class="my-3 topslide">
+        <owl-carousel-o [options]="customOptions1">
+          <ng-template carouselSlide>
+            <a href="#"><img src="assets/images/Homeimages/slide1.png" /> </a>
+          </ng-template>
+          <ng-template carouselSlide>
+            <a href="#"><img src="assets/images/Homeimages/slide2.png" /> </a>
+          </ng-template>
+          <ng-template carouselSlide>
+            <a href="#"><img src="assets/images/Homeimages/slide3.png" /> </a>
+          </ng-template>
+          <ng-template carouselSlide>
+            <a href="#"><img src="assets/images/Homeimages/slide4.png" /> </a>
+          </ng-template>
+          <ng-template carouselSlide>
+            <a href="#"><img src="assets/images/Homeimages/slide5.png" /> </a>
+          </ng-template>
+          <ng-template carouselSlide>
+            <a href="#"><img src="assets/images/Homeimages/slide6.png" /> </a>
+          </ng-template>
+          <ng-template carouselSlide>
+            <a href="#"><img src="assets/images/Homeimages/slide7.png" /> </a>
+          </ng-template>
+          <ng-template carouselSlide>
+            <a href="#"><img src="assets/images/Homeimages/slide8.png" /> </a>
+          </ng-template>
+          <ng-template carouselSlide>
+            <a href="#"><img src="assets/images/Homeimages/slide9.png" /> </a>
+          </ng-template>
+          <ng-template carouselSlide>
+            <a href="#"><img src="assets/images/Homeimages/slide10.png" /> </a>
+          </ng-template>
+          <ng-template carouselSlide>
+            <a href="#"><img src="assets/images/Homeimages/slide1.png" /> </a>
+          </ng-template>
+          <ng-template carouselSlide>
+            <a href="#"><img src="assets/images/Homeimages/slide2.png" /> </a>
+          </ng-template>
+          <ng-template carouselSlide>
+            <a href="#"><img src="assets/images/Homeimages/slide3.png" /> </a>
+          </ng-template>
+          <ng-template carouselSlide>
+            <a href="#"><img src="assets/images/Homeimages/slide4.png" /> </a>
+          </ng-template>
+          <ng-template carouselSlide>
+            <a href="#"><img src="assets/images/Homeimages/slide5.png" /> </a>
+          </ng-template>
+          <ng-template carouselSlide>
+            <a href="#"><img src="assets/images/Homeimages/slide6.png" /> </a>
+          </ng-template>
+        </owl-carousel-o>
+      </div>
+      <div class="carouselsection">
+        <div class="d-flex justify-content-between d-flex text-white my-3 mt-5">
+          <div class="d-flex section-title align-items-center">
+            <p class="bigwin-title mb-0"><b></b></p>
+            Recent Big Wins
+          </div>
+          <div class="viewbtn pointer" routerLink="/casino">
+            <div>All</div>
+          </div>
+        </div>
+        <div class="small-carosel">
+          <owl-carousel-o [options]="customOptions3">
+            <ng-container *ngFor="let data of BigWinUser">
+              <ng-template carouselSlide>
+                <!-- data-toggle="modal" data-target="#exampleCenter2" -->
+                <a
+                  (click)="recentDetails(data.game, data._id)"
+                  data-toggle="modal"
+                  data-target="#exampleCenter2"
+                >
+                  <div class="h-cus">
+                    <img [src]="data.Image" />
+                  </div>
+                  <div class="">
+                    <div class="p-1 align-items-center">
+                      <div
+                        class="text-capitalize text-light"
+                        style="font-size: 0.5rem"
+                      >
+                        {{ data.user_name }}
+                      </div>
+                      <div class="text-capitalize">
+                        <span class="AmtClr" style="font-size: 0.5rem"
+                          >$ {{ (data.win_lose_amt * 1).toFixed(2) }}</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+        </div>
+      </div>
+
+      <div class="cust pictures2 hov" class="adsection">
+        <div class="first-adsection">
+          <div
+            class=""
+            style="
+              background-color: rgba(41, 45, 46);
+              border-radius: 0.5rem;
+              flex: 1;
+            "
+            routerLink="/casino"
+          >
+            <div class="wrapperpic casinopic casionbg">
+              <div class="content">
+                <h4
+                  style="font-weight: 600; font-size: 1rem"
+                  class="d-flex align-items-center text-uppercase"
+                >
+                  <span class="iconm mr-2">
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      class="text-green-dark mr-2"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M386.688 487.75l-119.236-55.423c-7.898-3.673-11.334-13.065-7.66-20.976l84.374-181.523c3.667-7.904 13.07-11.334 20.963-7.667l119.24 55.434c7.9 3.673 11.33 13.065 7.656 20.964l-84.37 181.524c-3.678 7.904-13.076 11.334-20.968 7.667zM98.95 467.945L19.79 284.09c-3.448-8.007.255-17.302 8.25-20.744l39.196-16.872 48.975 184.044c4.694 17.588 22.755 28.078 40.36 23.39l39.032-10.386-75.907 32.686c-8.007 3.443-17.296-.255-20.744-8.262zm33.89-41.86L81.362 232.638c-2.24-8.42 2.78-17.078 11.19-19.312l34.033-9.052-4.098 30.465c-2.422 18.036 10.224 34.652 28.285 37.087l79.828 10.758-32.497 109.467c-3.345 11.28-.37 22.948 6.866 31.18l-52.82 14.05c-8.42 2.24-17.07-2.77-19.31-11.196zm108.428-4.76l-16.02-4.76c-8.36-2.49-13.12-11.267-10.644-19.627l56.97-191.9c2.484-8.36 11.28-13.12 19.622-10.65l49.073 14.583.008-.005.12.044-.133-.034c-4.93 3.254-9.04 7.868-11.705 13.605l-84.38 181.53c-2.587 5.586-3.486 11.517-2.915 17.218zm-5.707-155.43l-82.486-11.117c-8.633-1.166-14.704-9.12-13.538-17.758l26.73-198.39c1.16-8.633 9.125-14.698 17.74-13.538l130.327 17.563c8.627 1.166 14.692 9.125 13.532 17.752L311.42 182.46l-15.33-4.552c-17.467-5.197-35.826 4.784-41.004 22.232l-19.525 65.755zm-5.19-31.46c4.67-3.055 7.474-7.438 8.42-13.145.936-5.633-.357-10.617-3.866-14.945-3.51-4.414-8.39-7.14-14.656-8.178-6.344-1.057-11.93-.073-16.75 2.956-4.826 3.03-7.692 7.316-8.615 12.87-.898 5.386.425 10.42 3.97 15.082 3.565 4.504 8.525 7.285 14.863 8.34 6.35 1.057 11.893.062 16.634-2.98zm25.978-81.243c4.693-2.726 8.888-5.434 12.598-8.117 3.703-2.684 6.915-5.586 9.635-8.725 2.72-3.13 4.967-6.573 6.733-10.307 1.76-3.74 3.048-8.032 3.85-12.865 1.262-7.62 1.02-14.358-.735-20.234-1.75-5.87-4.693-10.94-8.833-15.22-4.135-4.27-9.24-7.753-15.318-10.43-6.07-2.684-12.804-4.633-20.174-5.86-7.692-1.28-15.3-1.602-22.815-.977-7.516.614-14.63 2.247-21.346 4.88l-5.95 35.802c6.813-4.25 13.77-7.104 20.855-8.567 7.09-1.475 13.726-1.7 19.913-.668 21.467 4.092 19.44 24.898 8.76 34.03-5.652 4.473-11.334 8.802-15.942 11.345-10.48 5.914-27.69 23.125-22.542 45.145l31.284 5.202c-7.11-17.757 11.663-29.462 20.028-34.434z"
+                      ></path></svg
+                  ></span>
+                  <span>Casino</span>
+                </h4>
+                <p class="h6 lh text-white">
+                  Dive into our in-house games, live casino and slots
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              background-color: rgba(41, 45, 46);
+              border-radius: 0.5rem;
+              flex: 1;
+            "
+            routerLink="/casino"
+          >
+            <div class="wrapperpic sportspic casionbg">
+              <div class="content">
+                <h4
+                  style="font-weight: 600; font-size: 1rem"
+                  class="d-flex align-items-center text-uppercase"
+                >
+                  <span class="iconm mr-2">
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      class="text-green-dark mr-2"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M386.688 487.75l-119.236-55.423c-7.898-3.673-11.334-13.065-7.66-20.976l84.374-181.523c3.667-7.904 13.07-11.334 20.963-7.667l119.24 55.434c7.9 3.673 11.33 13.065 7.656 20.964l-84.37 181.524c-3.678 7.904-13.076 11.334-20.968 7.667zM98.95 467.945L19.79 284.09c-3.448-8.007.255-17.302 8.25-20.744l39.196-16.872 48.975 184.044c4.694 17.588 22.755 28.078 40.36 23.39l39.032-10.386-75.907 32.686c-8.007 3.443-17.296-.255-20.744-8.262zm33.89-41.86L81.362 232.638c-2.24-8.42 2.78-17.078 11.19-19.312l34.033-9.052-4.098 30.465c-2.422 18.036 10.224 34.652 28.285 37.087l79.828 10.758-32.497 109.467c-3.345 11.28-.37 22.948 6.866 31.18l-52.82 14.05c-8.42 2.24-17.07-2.77-19.31-11.196zm108.428-4.76l-16.02-4.76c-8.36-2.49-13.12-11.267-10.644-19.627l56.97-191.9c2.484-8.36 11.28-13.12 19.622-10.65l49.073 14.583.008-.005.12.044-.133-.034c-4.93 3.254-9.04 7.868-11.705 13.605l-84.38 181.53c-2.587 5.586-3.486 11.517-2.915 17.218zm-5.707-155.43l-82.486-11.117c-8.633-1.166-14.704-9.12-13.538-17.758l26.73-198.39c1.16-8.633 9.125-14.698 17.74-13.538l130.327 17.563c8.627 1.166 14.692 9.125 13.532 17.752L311.42 182.46l-15.33-4.552c-17.467-5.197-35.826 4.784-41.004 22.232l-19.525 65.755zm-5.19-31.46c4.67-3.055 7.474-7.438 8.42-13.145.936-5.633-.357-10.617-3.866-14.945-3.51-4.414-8.39-7.14-14.656-8.178-6.344-1.057-11.93-.073-16.75 2.956-4.826 3.03-7.692 7.316-8.615 12.87-.898 5.386.425 10.42 3.97 15.082 3.565 4.504 8.525 7.285 14.863 8.34 6.35 1.057 11.893.062 16.634-2.98zm25.978-81.243c4.693-2.726 8.888-5.434 12.598-8.117 3.703-2.684 6.915-5.586 9.635-8.725 2.72-3.13 4.967-6.573 6.733-10.307 1.76-3.74 3.048-8.032 3.85-12.865 1.262-7.62 1.02-14.358-.735-20.234-1.75-5.87-4.693-10.94-8.833-15.22-4.135-4.27-9.24-7.753-15.318-10.43-6.07-2.684-12.804-4.633-20.174-5.86-7.692-1.28-15.3-1.602-22.815-.977-7.516.614-14.63 2.247-21.346 4.88l-5.95 35.802c6.813-4.25 13.77-7.104 20.855-8.567 7.09-1.475 13.726-1.7 19.913-.668 21.467 4.092 19.44 24.898 8.76 34.03-5.652 4.473-11.334 8.802-15.942 11.345-10.48 5.914-27.69 23.125-22.542 45.145l31.284 5.202c-7.11-17.757 11.663-29.462 20.028-34.434z"
+                      ></path></svg
+                  ></span>
+                  <span>Sport</span>
+                </h4>
+                <p class="h6 lh text-white">
+                  Bet on Football, Cricket, NFL, eSports & over 80 sports!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="second-adsection">
+          <div class="" style="margin-bottom: 10px">
+            <div
+              class=""
+              style="
+                background-color: rgba(41, 45, 46);
+                border-radius: 0.5rem;
+                flex: 1;
+              "
+              routerLink="/casino"
+            >
+              <div class="wrapperpic lotterypic casionbg">
+                <div class="">
+                  <h4
+                    style="font-weight: 600; font-size: 1rem"
+                    class="d-flex align-items-center text-uppercase"
+                  >
+                    <span class="iconm mr-2">
+                      <svg
+                        stroke="currentColor"
+                        fill="currentColor"
+                        stroke-width="0"
+                        version="1.1"
+                        viewBox="0 0 16 16"
+                        class="text-green-dark mr-2"
+                        height="1em"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9 5l2 2-4 4-2-2zM15.649 4.649l-1.149-1.149-0.5 0.5c-0.256 0.256-0.61 0.414-1 0.414-0.781 0-1.414-0.633-1.414-1.414 0-0.391 0.158-0.744 0.415-1l0.5-0.5-1.149-1.149c-0.468-0.468-1.235-0.468-1.703 0l-9.297 9.297c-0.468 0.468-0.468 1.235 0 1.703l1.149 1.149 0.499-0.499c0.256-0.256 0.61-0.415 1.001-0.415 0.781 0 1.414 0.633 1.414 1.414 0 0.391-0.158 0.744-0.415 1l-0.5 0.5 1.149 1.149c0.468 0.468 1.234 0.468 1.703 0l9.297-9.297c0.468-0.468 0.468-1.235 0-1.703zM7 13l-4-4 6-6 4 4-6 6z"
+                        ></path>
+                      </svg>
+                    </span>
+                    <span>Lottery</span>
+                  </h4>
+                  <p class="h6 lh text-white"></p>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                background-color: rgba(41, 45, 46);
+                border-radius: 0.5rem;
+                flex: 1;
+              "
+              routerLink="/casino"
+            >
+              <div class="wrapperpic racingpic casionbg">
+                <div class="">
+                  <h4
+                    style="font-weight: 600; font-size: 1rem"
+                    class="d-flex align-items-center text-uppercase"
+                  >
+                    <span class="iconm mr-2">
+                      <svg
+                        stroke="currentColor"
+                        fill="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 512 512"
+                        class="text-green-dark mr-2"
+                        height="1em"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M400 16c-21.335 9.73-58.244 17.34-73.086 48.232-22.36 1.948-72.753 10.673-122.22 40.25-58.098 34.74-116.017 97.417-131.776 213.702l-.48 3.537-2.774 2.25c-30.87 25.002-40.657 38.937-44.416 61.153-3.536 20.9-.72 51.46-.363 101.877H328.36c3.455-16.892 10.44-29.245 12.472-41.568 2.337-14.176.19-29.938-20.812-58.547-43.078-58.683-46.853-129.458-12.916-171.28-8.654-2.765-15.09-6.887-19.458-12.546-6.115-7.924-7.4-17.006-8.57-25.884l17.848-2.352c1.112 8.446 2.38 13.88 4.97 17.237 2.59 3.356 7.31 6.472 19.55 8.46l-.022.128.172-.17 5.998 9.424c19.957 31.358 42.84 51.292 73.332 54.44l6.51.672 1.367 6.4c2.74 12.828 8.626 19.095 15.116 22.238 6.49 3.143 14.225 2.944 20.47.205 9.316-4.086 14.518-11.35 16.7-22.712 2.122-11.05.546-25.834-5.137-42.106-33.538-38.248-44.475-87.277-63.903-128.772-6.055-9.947-12.448-18.518-20.385-24.856C376.808 55.126 386.456 34.852 400 16zM214.068 34.97C179.55 35.06 146.075 43.06 96 58.58c31.146 9.92 70.397 18.9 86.037 39.01 4.463-3.017 8.94-5.88 13.418-8.56 40.51-24.22 80.387-35.286 108.23-40.04-35.854-9.477-63.047-14.094-89.617-14.023zM157.16 96.712c-1.13-.01-2.265-.01-3.402.004-30.353.37-63.1 9.745-96.647 31.283 27.186 3.672 54.67 3.724 72.58 15.398 15.9-17.92 33.144-32.634 50.677-44.668-7.548-1.244-15.292-1.938-23.207-2.017zM368 128a13.214 13.215 0 0 1 13.213 13.215A13.214 13.215 0 0 1 368 154.432a13.214 13.215 0 0 1-13.213-13.217A13.214 13.215 0 0 1 368 128zm-238.906 16.068c-36.395 1.495-68.903 6.53-104.76 24.766 33.236 7.095 50.913 13.507 65.025 33.83 11.522-22.53 25.045-41.93 39.734-58.596zM74.518 201.46C53.53 201.65 36.614 213.14 16 224c27.854 0 46.067 3.862 58.71 12.055 4.33-11.652 9.16-22.615 14.41-32.924-5.12-1.19-9.963-1.71-14.602-1.67zm-.623 36.82c-17.933 5.845-35.452 7.15-54.23 22.284 17.62 4.638 34.79 9.596 41.398 22.034 3.496-15.77 7.814-30.523 12.832-44.32zm370.142 8.57c1.617-.035 3.222.044 4.783.187l-1.64 17.926c-3.928-.36-5.513.416-5.57.465-.058.048-1.035.656-.635 5.886l-17.95 1.372c-.638-8.35 1.297-16.207 6.955-20.997 4.245-3.593 9.206-4.735 14.057-4.84zM52.215 290.723c-10.352.13-23.76 5.646-34.656 12.334 12.173 6.83 12.357 23.472 8.938 37.668 7.3-9.105 16.855-18.323 29.158-28.48 1.016-7.043 2.19-13.9 3.506-20.585-2.082-.67-4.42-.97-6.947-.937z"
+                        ></path></svg
+                    ></span>
+                    <span>Racing</span>
+                  </h4>
+                  <p class="h6 lh text-white"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="">
+            <div
+              style="
+                background-color: rgba(41, 45, 46);
+                border-radius: 0.5rem;
+                flex: 1;
+              "
+              routerLink="/casino"
+            >
+              <div class="wrapperpic updownpic casionbg">
+                <div class="">
+                  <h4
+                    style="font-weight: 600; font-size: 1rem"
+                    class="d-flex align-items-center text-uppercase"
+                  >
+                    <span class="iconm mr-2">
+                      <svg
+                        stroke="currentColor"
+                        fill="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 24 24"
+                        class="text-green-dark mr-2"
+                        height="1em"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path
+                          d="M9 4H7v2H5v12h2v2h2v-2h2V6H9zM19 8h-2V4h-2v4h-2v7h2v5h2v-5h2z"
+                        ></path></svg
+                    ></span>
+                    <span>Updown</span>
+                  </h4>
+                  <p class="h6 lh text-white"></p>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                background-color: rgba(41, 45, 46);
+                border-radius: 0.5rem;
+                flex: 1;
+              "
+              routerLink="/casino"
+            >
+              <div class="wrapperpic bingopic casionbg">
+                <div class="">
+                  <h4
+                    style="font-weight: 600; font-size: 1rem"
+                    class="d-flex align-items-center text-uppercase"
+                  >
+                    <span class="iconm mr-2">
+                      <svg
+                        stroke="currentColor"
+                        fill="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 16 16"
+                        class="text-green-dark mr-2"
+                        height="1em"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8 1a3.25 3.25 0 0 0-3.25 3.25c0 .186 0 .29.016.41.014.12.045.27.12.527l.19.665-.692-.028a3.25 3.25 0 1 0 2.357 5.334.5.5 0 0 1 .844.518l-.003.005-.006.015-.024.055a22 22 0 0 1-.438.92 22 22 0 0 1-1.266 2.197c-.013.018-.02.05.001.09q.016.029.03.036A.04.04 0 0 0 5.9 15h4.2q.014 0 .022-.006a.1.1 0 0 0 .029-.035c.02-.04.014-.073.001-.091a23 23 0 0 1-1.704-3.117l-.024-.054-.006-.015-.002-.004a.5.5 0 0 1 .838-.524c.601.7 1.516 1.168 2.496 1.168a3.25 3.25 0 1 0-.139-6.498l-.699.03.199-.671c.14-.47.14-.745.139-.927V4.25A3.25 3.25 0 0 0 8 1m2.207 12.024c.225.405.487.848.78 1.294C11.437 15 10.975 16 10.1 16H5.9c-.876 0-1.338-1-.887-1.683.291-.442.552-.88.776-1.283a4.25 4.25 0 1 1-2.007-8.187l-.009-.064c-.023-.187-.023-.348-.023-.52V4.25a4.25 4.25 0 0 1 8.5 0c0 .14 0 .333-.04.596a4.25 4.25 0 0 1-.46 8.476 4.2 4.2 0 0 1-1.543-.298"
+                        ></path></svg
+                    ></span>
+                    <span>Bingo</span>
+                  </h4>
+                  <p class="h6 lh text-white"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="margg">
+        <div class="carouselsection">
+          <div
+            class="d-flex justify-content-between d-flex text-white my-3 mt-5"
+          >
+            <div class="section-title">BC Original</div>
+            <div class="viewbtn pointer" routerLink="/casino">
+              <div>View All</div>
+            </div>
+          </div>
+          <owl-carousel-o [options]="customOptions4">
+            <ng-template carouselSlide *ngFor="let game of games">
+              <a
+                [routerLink]="game.route"
+                class="original"
+                style="position: relative"
+              >
+                <img [src]="game.img" />
+                <div class="darkbg">
+                  <div class="iconbutton">
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 384 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80L0 432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+              </a>
+            </ng-template>
+          </owl-carousel-o>
+        </div>
+
+        <app-live-sport></app-live-sport>
+
+        <div class="mt-5 depositbonus">
+          <div class="row align-items-center">
+            <div class="col-lg-6 col-xl-6">
+              <div class="payment-list">
+                <div><img src="assets/images/paytm.webp" alt="" /></div>
+                <div><img src="assets/images/phonebe.webp" alt="" /></div>
+                <div><img src="assets/images/upi.webp" alt="" /></div>
+                <div><img src="assets/images/master.webp" alt="" /></div>
+                <div><img src="/assets/images/visa.webp" alt="" /></div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="payment-opt">
+                <div class="payment-cont">
+                  <div class="payment-title">
+                    Fast &amp; Easy Way to get started
+                  </div>
+                  <div class="payment-desc">
+                    <span>300%</span> Deposit Bonus
+                  </div>
+                  <div class="btn-wrap">
+                    <button class="ui-button button-normal s-conic2">
+                      <div
+                        class="button-inner bluebtn btn mt-3"
+                        (click)="openModal()"
+                      >
+                        Deposit
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5">
+          <div class="h4 text-white">Latest bet & Race</div>
+          <div class="">
+            <nav>
+              <div
+                class="nav nav-tabs sitetabs tabs1"
+                id="nav-tab"
+                role="tablist"
+              >
+                <a
+                  class="nav-item nav-link active"
+                  id="nav-all-tab"
+                  data-toggle="tab"
+                  href="#nav-all"
+                  role="tab"
+                  aria-controls="nav-all"
+                  aria-selected="true"
+                  >Latest Bets</a
+                >
+                <!--<a class="nav-item nav-link" id="nav-bets-tab" data-toggle="tab" href="#nav-bets" role="tab" aria-controls="nav-bets" aria-selected="false">My Bets</a>-->
+                <a
+                  class="nav-item nav-link"
+                  id="nav-roller-tab"
+                  data-toggle="tab"
+                  href="#nav-roller"
+                  role="tab"
+                  aria-controls="nav-roller"
+                  aria-selected="false"
+                  >High Roller</a
+                >
+                <a
+                  class="nav-item nav-link"
+                  id="nav-contest-tab"
+                  data-toggle="tab"
+                  href="#nav-contest"
+                  role="tab"
+                  aria-controls="nav-contest"
+                  aria-selected="false"
+                  >Wager Contest</a
+                >
+              </div>
+            </nav>
+            <div class="tab-content hf" id="nav-tabContent">
+              <div
+                class="tab-pane fade show active"
+                id="nav-all"
+                role="tabpanel"
+                aria-labelledby="nav-all-tab"
+              >
+                <div class="table-responsive">
+                  <table class="table table-dark lastright">
+                    <thead>
+                      <tr>
+                        <th>Game</th>
+                        <th>Player</th>
+                        <th>Bet Amount</th>
+                        <th>Multiplier</th>
+                        <th>Profit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container
+                        *ngFor="let list of GetGameRes; let i = index"
+                      >
+                        <tr>
+                          <td class="text-uppercase">{{ list.game }}</td>
+                          <td>{{ list.player }}</td>
+                          <td>{{ list.bet_amount }} {{ list.currency }}</td>
+                          <td>{{ list.payout.toFixed(2) }}x</td>
+                          <td
+                            [ngClass]="
+                              list.status == 'winner'
+                                ? 'text-success'
+                                : 'text-danger'
+                            "
+                          >
+                            {{
+                              list.status == "winner"
+                                ? "+" + list.win_lose_amt.toFixed(6)
+                                : "-" + list.win_lose_amt.toFixed(6)
+                            }}
+                          </td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="nav-bets"
+                role="tabpanel"
+                aria-labelledby="nav-bets-tab"
+              ></div>
+              <div
+                class="tab-pane fade"
+                id="nav-roller"
+                role="tabpanel"
+                aria-labelledby="nav-roller-tab"
+              >
+                <div class="table-responsive">
+                  <table class="table table-dark lastright">
+                    <thead>
+                      <tr>
+                        <th>Game</th>
+                        <th>Player</th>
+                        <th>Bet Amount</th>
+                        <th>Multiplier</th>
+                        <th>Profit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td colspan="5">
+                          <div class="text-center">
+                            <img width="30%" src="assets/images/empty.webp" />
+                          </div>
+                          <div class="text-center">Will be updated Soon...</div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="nav-contest"
+                role="tabpanel"
+                aria-labelledby="nav-contest-tab"
+              >
+                <div class="table-responsive">
+                  <table class="table table-dark lastright">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Player</th>
+                        <th>Wagered</th>
+                        <th>Prize</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td colspan="5">
+                          <div class="text-center">
+                            <img width="30%" src="assets/images/empty.webp" />
+                          </div>
+                          <div class="text-center">Will be updated Soon...</div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5">
+          <div
+            id="carouselExampleControls"
+            class="carousel slide"
+            data-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="signupbanner depositbonus">
+                  <div class="row m-0 radiusbx d-flex justify-content-stretch">
+                    <div class="col-lg-6 p-0">
+                      <div class="payment-opt oncontentwhl">
+                        <div class="oncontent py-4 px-5">
+                          <div class="h4 hf">
+                            Unlock exclusive
+                            <span class="green-t">VIP</span> rewards<br />
+                            at Roll.GAME!
+                          </div>
+                          <div class="h6 my-3 grey-t lgrey">
+                            Only in the VIP club
+                          </div>
+                          <div class="btn-wrap" *ngIf="!head">
+                            <button
+                              class="ui-button button-normal s-conic2 col text-left p-0"
+                            >
+                              <div
+                                class="button-inner sitebtn btn mt-3 col-lg-6"
+                                (click)="openModal1()"
+                              >
+                                Sign up
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-6">
+                      <div class="payment-list">
+                        <img
+                          class="img-fluid mt-5"
+                          width="350"
+                          src="assets/images/rain.webp"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="signupbanner1 depositbonus">
+                  <div class="row m-0 radiusbx d-flex justify-content-stretch">
+                    <div class="col-lg-3 p-0">
+                      <div class="payment-opt oncontentwhl">
+                        <div class="oncontent py-4 px-5">
+                          <div class="h4 hf">
+                            <span class="green-t">Register</span> now to
+                            instantly <br />redeem a
+                            <span class="text-warning">300%</span> deposit
+                            <br />bonus!
+                          </div>
+                          <div class="h6 my-3 grey-t lgrey">
+                            Deposit bonus up to $20,000
+                          </div>
+                          <div class="btn-wrap" *ngIf="!head">
+                            <button
+                              class="ui-button button-normal s-conic2 col text-left p-0"
+                            >
+                              <div
+                                class="button-inner orangebtn mobx btn mt-3 col-lg-6"
+                                (click)="openModal1()"
+                              >
+                                Sign up
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-6">
+                      <div class="payment-list">
+                        <img
+                          class="img-fluid"
+                          width="250"
+                          src="assets/images/bonus.webp"
+                        />
+                      </div>
+                      <div
+                        class="btn-wrap mobv w-75 mx-auto mb-5"
+                        *ngIf="!head"
+                      >
+                        <button
+                          class="ui-button button-normal s-conic2 col text-left p-0"
+                        >
+                          <div
+                            class="button-inner orangebtn btn mt-3 col-lg-6"
+                            (click)="openModal1()"
+                          >
+                            Sign up
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a
+              class="carousel-control-prev"
+              href="#carouselExampleControls"
+              role="button"
+              data-slide="prev"
+            >
+              <i class="fa fa-angle-left"></i>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#carouselExampleControls"
+              role="button"
+              data-slide="next"
+            >
+              <i class="fa fa-angle-right"></i>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+        <div class="carouselsection">
+          <div
+            class="d-flex justify-content-between d-flex text-white my-3 mt-5"
+          >
+            <div class="h4">Recommended Games</div>
+            <div class="viewbtn pointer" routerLink="/casino">
+              <div>View All</div>
+            </div>
+          </div>
+          <owl-carousel-o [options]="customOptions3">
+            <ng-template carouselSlide>
+              <a routerLink="/limbo">
+                <div class="h-cus">
+                  <img src="assets/images/limbo-g.png" />
+                </div>
+                <div class="darkbg">
+                  <div
+                    class="p-2 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="greyt text-uppercase lgrey">
+                      RollGame Original
+                    </div>
+                    <div class="infoicon">
+                      <img src="assets/images/app-info-icon.svg" />
+                      <div class="appinfobox lgrey">
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>RTP:</div>
+                          <div><span class="green-t">95.66%</span></div>
+                        </div>
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>Recently Biggest Win:</div>
+                          <div><span>883.18X</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-2 text-center">
+                    <button class="btn sitebtn">Play Now</button>
+                  </div>
+                </div>
+              </a>
+            </ng-template>
+            <ng-template carouselSlide>
+              <a routerLink="/dice">
+                <div class="h-cus">
+                  <img src="assets/images/dice-g.png" />
+                </div>
+                <div class="darkbg">
+                  <div
+                    class="p-2 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="lgrey text-uppercase">RollGame Original</div>
+                    <div class="infoicon">
+                      <img src="assets/images/app-info-icon.svg" />
+                      <div class="appinfobox lgrey">
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>RTP:</div>
+                          <div><span class="green-t">95.66%</span></div>
+                        </div>
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>Recently Biggest Win:</div>
+                          <div><span>883.18X</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-2 text-center">
+                    <button class="btn sitebtn">Play Now</button>
+                  </div>
+                </div>
+              </a>
+            </ng-template>
+            <ng-template carouselSlide>
+              <a routerLink="/bustabit">
+                <div class="h-cus">
+                  <img src="assets/images/bustabit.png" />
+                </div>
+                <div class="darkbg">
+                  <div
+                    class="p-2 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="lgrey text-uppercase">RollGame Original</div>
+                    <div class="infoicon">
+                      <img src="assets/images/app-info-icon.svg" />
+                      <div class="appinfobox lgrey">
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>RTP:</div>
+                          <div><span class="green-t">95.66%</span></div>
+                        </div>
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>Recently Biggest Win:</div>
+                          <div><span>883.18X</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-2 text-center">
+                    <button class="btn sitebtn">Play Now</button>
+                  </div>
+                </div>
+              </a>
+            </ng-template>
+            <ng-template carouselSlide>
+              <a routerLink="/coinflip">
+                <div class="h-cus">
+                  <img src="assets/images/coinflip.png" />
+                </div>
+                <div class="darkbg">
+                  <div
+                    class="p-2 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="lgrey text-uppercase">RollGame Original</div>
+                    <div class="infoicon">
+                      <img src="assets/images/app-info-icon.svg" />
+                      <div class="appinfobox lgrey">
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>RTP:</div>
+                          <div><span class="green-t">95.66%</span></div>
+                        </div>
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>Recently Biggest Win:</div>
+                          <div><span>883.18X</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-2 text-center">
+                    <button class="btn sitebtn">Play Now</button>
+                  </div>
+                </div>
+              </a>
+            </ng-template>
+            <ng-template carouselSlide>
+              <a routerLink="/roulette">
+                <div class="h-cus">
+                  <img src="assets/images/roulette.png" />
+                </div>
+                <div class="darkbg">
+                  <div
+                    class="p-2 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="lgrey text-uppercase">RollGame Original</div>
+                    <div class="infoicon">
+                      <img src="assets/images/app-info-icon.svg" />
+                      <div class="appinfobox lgrey">
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>RTP:</div>
+                          <div><span class="green-t">95.66%</span></div>
+                        </div>
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>Recently Biggest Win:</div>
+                          <div><span>883.18X</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-2 text-center">
+                    <button class="btn sitebtn">Play Now</button>
+                  </div>
+                </div>
+              </a>
+            </ng-template>
+            <ng-template carouselSlide>
+              <a routerLink="/sword">
+                <div class="h-cus">
+                  <img src="assets/images/sword-g.png" />
+                </div>
+                <div class="darkbg">
+                  <div
+                    class="p-2 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="lgrey text-uppercase">RollGame Original</div>
+                    <div class="infoicon">
+                      <img src="assets/images/app-info-icon.svg" />
+                      <div class="appinfobox lgrey">
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>RTP:</div>
+                          <div><span class="green-t">95.66%</span></div>
+                        </div>
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>Recently Biggest Win:</div>
+                          <div><span>883.18X</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-2 text-center">
+                    <button class="btn sitebtn">Play Now</button>
+                  </div>
+                </div>
+              </a>
+            </ng-template>
+            <ng-template carouselSlide>
+              <a routerLink="/ringoffortune">
+                <div class="h-cus">
+                  <img src="assets/images/fortune.png" />
+                </div>
+                <div class="darkbg">
+                  <div
+                    class="p-2 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="lgrey text-uppercase">RollGame Original</div>
+                    <div class="infoicon">
+                      <img src="assets/images/app-info-icon.svg" />
+                      <div class="appinfobox lgrey">
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>RTP:</div>
+                          <div><span class="green-t">95.66%</span></div>
+                        </div>
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>Recently Biggest Win:</div>
+                          <div><span>883.18X</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-2 text-center">
+                    <button class="btn sitebtn">Play Now</button>
+                  </div>
+                </div>
+              </a>
+            </ng-template>
+            <ng-template carouselSlide>
+              <a routerLink="/plinko">
+                <div class="h-cus">
+                  <img src="assets/images/pinko-g.png" />
+                </div>
+                <div class="darkbg">
+                  <div
+                    class="p-2 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="lgrey text-uppercase">RollGame Original</div>
+                    <div class="infoicon">
+                      <img src="assets/images/app-info-icon.svg" />
+                      <div class="appinfobox lgrey">
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>RTP:</div>
+                          <div><span class="green-t">95.66%</span></div>
+                        </div>
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>Recently Biggest Win:</div>
+                          <div><span>883.18X</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-2 text-center">
+                    <button class="btn sitebtn">Play Now</button>
+                  </div>
+                </div>
+              </a>
+            </ng-template>
+            <ng-template carouselSlide>
+              <a routerLink="/keno">
+                <div class="h-cus">
+                  <img src="assets/images/keno-g.png" />
+                </div>
+                <div class="darkbg">
+                  <div
+                    class="p-2 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="lgrey text-uppercase">RollGame Original</div>
+                    <div class="infoicon">
+                      <img src="assets/images/app-info-icon.svg" />
+                      <div class="appinfobox lgrey">
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>RTP:</div>
+                          <div><span class="green-t">95.66%</span></div>
+                        </div>
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>Recently Biggest Win:</div>
+                          <div><span>883.18X</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-2 text-center">
+                    <button class="btn sitebtn">Play Now</button>
+                  </div>
+                </div>
+              </a>
+            </ng-template>
+            <ng-template carouselSlide>
+              <a routerLink="/wheel">
+                <div class="h-cus">
+                  <img src="assets/images/wheel-g.png" />
+                </div>
+                <div class="darkbg">
+                  <div
+                    class="p-2 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="lgrey text-uppercase">RollGame Original</div>
+                    <div class="infoicon">
+                      <img src="assets/images/app-info-icon.svg" />
+                      <div class="appinfobox lgrey">
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>RTP:</div>
+                          <div><span class="green-t">95.66%</span></div>
+                        </div>
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>Recently Biggest Win:</div>
+                          <div><span>883.18X</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-2 text-center">
+                    <button class="btn sitebtn">Play Now</button>
+                  </div>
+                </div>
+              </a>
+            </ng-template>
+            <ng-template carouselSlide>
+              <a routerLink="/mines">
+                <div class="h-cus">
+                  <img src="assets/images/mines-g.png" />
+                </div>
+                <div class="darkbg">
+                  <div
+                    class="p-2 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="lgrey text-uppercase">RollGame Original</div>
+                    <div class="infoicon">
+                      <img src="assets/images/app-info-icon.svg" />
+                      <div class="appinfobox lgrey">
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>RTP:</div>
+                          <div><span class="green-t">95.66%</span></div>
+                        </div>
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>Recently Biggest Win:</div>
+                          <div><span>883.18X</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-2 text-center">
+                    <button class="btn sitebtn">Play Now</button>
+                  </div>
+                </div>
+              </a>
+            </ng-template>
+            <ng-template carouselSlide>
+              <a routerLink="/caveofplunder">
+                <div class="h-cus">
+                  <img src="assets/images/plunder-g.png" />
+                </div>
+                <div class="darkbg">
+                  <div
+                    class="p-2 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="lgrey text-uppercase">RollGame Original</div>
+                    <div class="infoicon">
+                      <img src="assets/images/app-info-icon.svg" />
+                      <div class="appinfobox lgrey">
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>RTP:</div>
+                          <div><span class="green-t">95.66%</span></div>
+                        </div>
+                        <div class="darkformbox d-flex justify-content-between">
+                          <div>Recently Biggest Win:</div>
+                          <div><span>883.18X</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-2 text-center">
+                    <button class="btn sitebtn">Play Now</button>
+                  </div>
+                </div>
+              </a>
+            </ng-template>
+          </owl-carousel-o>
+        </div>
+
+        <div class="d-flex row mt-5">
+          <div class="col-lg-6">
+            <h5 class="text-white my-3">Crypto Online Casino</h5>
+            <p>
+              Casinos online have not always been around, but we can safely say
+              that online casinos have been used a lot since they came on the
+              market. And it's not in short demand nor options, and now in 2023,
+              we have 1000s and 1000s to pick from – it's just a matter of what
+              you like and what payment options you would like to see at the
+              casino.
+            </p>
+
+            <p>
+              Players are always looking for something new, which will help make
+              the gaming experience so much better and more accessible. Allowing
+              the player to focus on the absolute fun of a casino, that's right,
+              the games themselves.
+            </p>
+            <div class="">Show More</div>
+          </div>
+          <div class="col-lg-6">
+            <h5 class="text-white my-3">Help us improve your experience</h5>
+            <textarea
+              class="form-control"
+              placeholder="Found a bug? Or have any recommendations? Please leave your message here and our team will work on it!"
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+              data-twofas-input-listener="true"
+              data-twofas-input="66489a8e-9ed8-46ab-adf4-46194e7b0549"
+              spellcheck="false"
+            ></textarea>
+            <div class="d-flex my-3 row m-0 align-items-center">
+              <button
+                class="ui-button button-normal s-conic mr-3 p-0 text-left col-lg-5 mr-md-0"
+              >
+                <div class="button-inner sitebtn btn col-lg-12">
+                  Leave a Message
+                </div>
+              </button>
+              <div class="message col">
+                <p class="m-0">Now get rewarded for your valuable feedback.</p>
+              </div>
+            </div>
+            <div class="my-3 hf">
+              Or Email us:<span class="green-t">feedback@roll.game.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="test1"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content betslip">
+          <div class="top-bg">
+            <img alt="bg" src="assets/images/detail_bg.webp" />
+          </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Bet Slip</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="betbox">
+              <div class="my-2 text-center">
+                <div class="small text-white">Profit</div>
+                <div
+                  class="d-flex align-items-center justify-content-center h5 hf profita"
+                >
+                  <div>
+                    <img width="25" src="assets/images/coins/usdt.svg" />
+                  </div>
+                  <div class="green-t mx-2">+ 53,67,013.52</div>
+                  <div class="text-white">USDT</div>
+                </div>
+                <div class="d-flex justify-content-center por py-2">
+                  <div class="col">
+                    Bet Amount<br /><img
+                      width="15"
+                      src="assets/images/coins/usdt.svg"
+                    />
+                  </div>
+                  <div class="col">Payout<br />1000x</div>
+                  <div class="line"></div>
+                </div>
+              </div>
+              <div class="d-flex text-left align-items-center userdt">
+                <div class="py-3">
+                  <div class="userpic">
+                    <img
+                      width="40"
+                      class="img-fluid1 rounded-circle"
+                      src="assets/images/head6.png"
+                    />
+                  </div>
+                </div>
+                <div class="py-3">
+                  <div class="my-1">Ham_Chơi On 9/20/2023, 1:42:23 AM</div>
+                  <div class="my-1">
+                    Bet ID:
+                    <img
+                      width="10"
+                      src="assets/images/verified.svg"
+                    />380806948813045416 <i class="fas fa-copy ml-2"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="my-2 gamebox">
+                <div
+                  class="d-flex p-2 justify-content-between align-items-center"
+                >
+                  <div class="d-flex align-items-center">
+                    <div class="gamepic">
+                      <img width="55" src="assets/images/fortune.png" />
+                    </div>
+                    <div class="p-2">
+                      <div class="text-white">Limbo</div>
+                      <div>Roll.Game</div>
+                    </div>
+                  </div>
+                  <div>Play Now <i class="fas fa-chevron-right"></i></div>
+                </div>
+              </div>
+              <div id="accordion">
+                <div class="card">
+                  <div
+                    id="headingOne"
+                    data-toggle="collapse"
+                    data-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                    <h5 class="mb-0">
+                      <button class="btn btn-link">Game Details</button>
+                    </h5>
+                  </div>
+
+                  <div
+                    id="collapseOne"
+                    class="collapse show"
+                    aria-labelledby="headingOne"
+                    data-parent="#accordion"
+                  >
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label>Game ID</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name=""
+                          value="62456"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>Hash</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name=""
+                          value="62456"
+                        />
+                      </div>
+                      <div class="form-group d-flex">
+                        <button
+                          type="button"
+                          class="greybtn mbtn btn greybtn col"
+                        >
+                          All Players
+                        </button>
+                        <button
+                          type="button"
+                          class="green mbtn sitebtn btn col"
+                        >
+                          Verify
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <!-- <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Sign in</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <div class="d-flex align-items-center">
+               <div class="col">
+                  <div class="text-center welcomebox">Welcome Pack</div>
+                  <h4 class="bf text-center">Choose Your welcome Pack and <span class="green-t nl">Get 1000 APE + $3 400</span></h4>
+                  <div class="boxwhl">
+                     <div class="box">
+                        <div class=""><img src="assets/images/gold.svg"/></div>
+                        <div class="bf">Gold </div>
+                        <div class="small bf green-t">1000 APE + $3 400 </div>
+                     </div>
+                     <div class="box">
+                        <div class=""><img src="assets/images/gold.svg"/></div>
+                        <div class="bf">Gold</div>
+                        <div class="small bf green-t">1000 APE + $3 400 </div>
+                     </div>
+                     <div class="box">
+                        <div class=""><img src="assets/images/gold.svg"/></div>
+                        <div class="bf">Gold</div>
+                        <div class="small bf green-t">1000 APE + $3 400 </div>
+                     </div>
+                  </div>
+                  <h5 class="text-center my-3 lh32">Sign Up And Get<span class="nl green-t">100 Nos Deposit Free Spins</span></h5>
+               </div>
+               <div class="col">
+                  <form #login="ngForm" autocomplete="off" novalidate>
+                     <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" name="email" class="form-control darkinput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" #e="ngModel" ngModel required pattern ="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                        <div *ngIf= "e.errors && (e.valid || e.touched || login.submitted)" class="errMsg">
+                           <span *ngIf="e.errors?.['required']" class="error">{{"Enter Email"}}</span>
+                           <span *ngIf="e.errors?.['pattern']" class="error">{{"Enter valid Email"}}</span>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" name="password" #p="ngModel" class="form-control darkinput" id="exampleInputPassword1" placeholder="Password" [minlength]="8" [maxlength]="20" ngModel required>
+                        <div *ngIf= "p.errors && (p.valid || p.touched || login.submitted)" class="errMsg">
+                           <span *ngIf="p.errors?.['required']" class="error">{{"Enter Password"}}</span>
+                           <span *ngIf="p.errors?.['minlength']" class="error">{{"password must be 8-20 letters"}}</span>
+                        </div>
+                     </div>
+                     <div class="form-group text-center">Or Login With</div>
+                     <div class="form-group">
+                        <ul class="socialicons">
+                           <li><a href="#"><img src="assets/images/gmail-icon.svg"></a></li>
+                           <li><a href="#"><img src="assets/images/instagram-icon.svg"></a></li>
+                           <li><a href="#"><img src="assets/images/binance-icon.svg"></a></li>
+                           <li><a href="#"><img src="assets/images/metamask-icon.svg"></a></li>
+                        </ul>
+                     </div>
+                     <div class="form-group">By accessing the site, I confirm that I am 18 years old and I have read the <span class="green-t">terms of service</span></div>
+                     <div class="form-group">Don't you have an account <a href="#" class="green-t" data-toggle="modal" data-target="#signup" data-dismiss="modal" aria-label="Close">Sign Up</a></div>
+                     <div class="form-check my-3">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="agree" #p="ngModel" ngModel required>
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                     </div>
+                     <button type="submit" class="btn sitebtn d-block w-100" [disabled]="login.invalid" (click)="executeAction('login', login)" data-dismiss="modal" aria-label="Close">Sign In</button>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div> -->
+
+    <div
+      class="modal fade"
+      id="exampleCenter2"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleCenter2"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-success" id="exampleModalLongTitle">
+              Bet Slip
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="detailForm">
+            <div class="ui-scrollview d767b8h">
+              <div class="g1g5nio3">
+                <div class="s1hd7haz game-share"></div>
+                <div class="text-center">
+                  <div class="d-flex justify-content-center mb-2">
+                    <img
+                      class="verified"
+                      src="assets/images/bet-id.svg"
+                      width="20px"
+                    />
+                    <div class="betid ml-2">Bet Id: {{ Det_id }}</div>
+                    <i
+                      class="fas fa-copy pl-3 hov"
+                      (click)="copyInputMessage(Det_id)"
+                    ></i>
+                  </div>
+                  <div class="d-flex justify-content-center mb-2">
+                    <span class="mr-2">By</span>
+                    <a
+                      href="#/user/profile/12344577"
+                      keep-scroll-position="true"
+                      class="u1blx6u2 user-info name mr-2"
+                    >
+                      <div class="name betid mr-2">{{ Det_name }}</div>
+                    </a>
+                    <span class="mr-2">On </span>
+                    <div class="rt_time mr-2">
+                      {{ Det_created_at | date : "dd-MM-yy  HH:mm:ss" }}
+                    </div>
+                  </div>
+                </div>
+                <div class="items d-flex justify-content-between">
+                  <div class="item-wrap blak-box">
+                    <div class="d-flex text-center">
+                      <img
+                        class="coin-icon"
+                        src="assets/images/amount.svg"
+                        width="20px"
+                      />
+                      <div class="label flex-center ml-2">Amount</div>
+                    </div>
+                    <div class="cy2znlo coin notranslate number flex-center">
+                      <div class="amount">
+                        <span class="amount-str"
+                          >{{ (Det_betamount * 1).toFixed(6) }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item-wrap blak-box">
+                    <div class="d-flex text-center">
+                      <img
+                        class="coin-icon"
+                        src="assets/images/payout.svg"
+                        width="20px"
+                      />
+                      <div class="label flex-center ml-2">Payout</div>
+                    </div>
+                    <div class="number flex-center">
+                      {{ (Det_payout * 1).toFixed(2) }} x
+                    </div>
+                  </div>
+                  <div class="item-wrap blak-box">
+                    <div class="d-flex text-center">
+                      <img
+                        class="coin-icon"
+                        src="assets/images/profit.svg"
+                        width="20px"
+                      />
+                      <div class="label flex-center ml-2">Profit</div>
+                    </div>
+                    <div
+                      class="cy2znlo coin notranslate number flex-center profit-num has-sign"
+                    >
+                      <div class="amount">
+                        <ng-container *ngIf="Det_status == 'winner'">
+                          <span
+                            class="amount-str"
+                            [ngClass]="{
+                              winner: Det_status == 'winner',
+                              looser: Det_status == 'loser'
+                            }"
+                          >
+                            + {{ (Det_pro_amt * 1).toFixed(6) }}
+                          </span>
+                        </ng-container>
+                        <ng-container *ngIf="Det_status != 'winner'">
+                          <span
+                            class="amount-str"
+                            [ngClass]="{
+                              winner: Det_status == 'winner',
+                              looser: Det_status == 'loser'
+                            }"
+                          >
+                            - {{ (Det_pro_amt * 1).toFixed(6) }}
+                          </span>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="game-info-wrap formbox p-2 mx-1 my-2 d-flex justify-content-between align-items-center"
+                >
+                  <div class="info-middle d-flex align-items-center">
+                    <div>
+                      <img
+                        class="thumbnail"
+                        width="100"
+                        alt="game-logo"
+                        [src]="Det_img || ''"
+                      />
+                    </div>
+                    <div class="ml-2">
+                      <div class="name betid">{{ Det_name }}</div>
+                      <div>RollGame</div>
+                    </div>
+                  </div>
+                  <button class="ui-button button-normal play">
+                    <a
+                      class="button-inner sitebtn"
+                      [routerLink]="Det_url"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                      >Play Now</a
+                    >
+                  </button>
+                </div>
+              </div>
+              <div
+                class="link item-wrap blak-boxz"
+                *ngIf="Det_name !== 'plinko'"
+              >
+                <a
+                  data-toggle="collapse"
+                  href="#collapse1"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                >
+                  <span class="res">Game Details</span>
+                  <i class="fas fa-caret-down er"></i>
+                </a>
+                <div class="collapse" id="collapse1">
+                  <div class="cards card-body">
+                    <div class="seed-main">
+                      <!-- limbo and dice -->
+                      <div
+                        class="items d-flex justify-content-between"
+                        *ngIf="
+                          Det_name == 'limbo' ||
+                          Det_name == 'dice' ||
+                          Det_name == 'caveofplunder'
+                        "
+                      >
+                        <div class="item-wrap blak-box">
+                          <div class="item-num">Result</div>
+                          <div class="item-desc">{{ Det_result }}</div>
+                        </div>
+                        <div class="item-wrap blak-box">
+                          <div class="item-num">Bet</div>
+                          <div class="item-desc">
+                            <span class="mthan">&gt;=0</span>
+                          </div>
+                        </div>
+                        <div class="item-wrap blak-box">
+                          <div class="item-num">Chance</div>
+                          <div class="item-desc">Infinity%</div>
+                        </div>
+                      </div>
+                      <!-- coinflip -->
+                      <div class="" *ngIf="Det_name == 'coinflip'">
+                        <p class="">Result</p>
+                        <div class="drk p-3">
+                          <div
+                            class="game-result-area d-flex justify-content-between drk"
+                          >
+                            <div class="bg-dark p-2 text-center">
+                              <p class="t">{{ Det_series }}</p>
+                              <p class="mb-0">SERIES</p>
+                            </div>
+                            <div class="p-3 text-center">
+                              <img
+                                alt="coin"
+                                [src]="
+                                  Det_coin_result[Det_series - 1].bet_result ==
+                                  'heads'
+                                    ? '/assets/images/head_coin.png'
+                                    : '/assets/images/tail_coin.png'
+                                "
+                                class="img-fluid headcoinss"
+                              />
+                            </div>
+                            <div class="bg-dark p-3 text-center">
+                              <p class="t lose">
+                                <span
+                                  [ngClass]="{
+                                    winner: Det_status == 'winner',
+                                    looser: Det_status == 'loser'
+                                  }"
+                                  >×</span
+                                >
+                                <span
+                                  [ngClass]="{
+                                    winner: Det_status == 'winner',
+                                    looser: Det_status == 'loser'
+                                  }"
+                                  >{{ (Det_payout * 1).toFixed(2) }}</span
+                                >
+                              </p>
+                              <p class="mb-0">MULTIPLY</p>
+                            </div>
+                          </div>
+                          <div>
+                            <div
+                              class="mt-3 p-3"
+                              style="
+                                background-color: #1e2024;
+                                border-radius: 5px;
+                              "
+                            >
+                              <ng-container
+                                *ngFor="let coin of Det_coin_result"
+                              >
+                                <img
+                                  class="idproof mr-1"
+                                  style="width: 50px"
+                                  [src]="
+                                    coin.bet_result == 'heads'
+                                      ? '/assets/images/head_coin.png'
+                                      : '/assets/images/tail_coin.png'
+                                  "
+                                />
+                              </ng-container>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- keno -->
+                      <div
+                        class="items d-flex justify-content-between"
+                        *ngIf="Det_name == 'keno'"
+                      >
+                        <div class="gridbox">
+                          <ng-container *ngFor="let kenNum of kenobetsdig">
+                            <div class="kenohis" id="{{ kenNum }}res">
+                              <span>{{ kenNum }}</span>
+                            </div>
+                          </ng-container>
+                        </div>
+                      </div>
+                      <!-- mines -->
+                      <div
+                        class="items d-flex justify-content-between"
+                        *ngIf="Det_name == 'mines'"
+                      >
+                        <div class="gridboxmini">
+                          <ng-container *ngFor="let tile of tiles">
+                            <div class="diamondmini" id="{{ tile }}res"></div>
+                          </ng-container>
+                        </div>
+                      </div>
+                      <!-- Fortune -->
+                      <div *ngIf="Det_name == 'wheel-of-fortune'">
+                        <div class="seed-main">
+                          <div class="ui-input">
+                            <div class="input-label">
+                              <div
+                                class="seed-col d-flex justify-content-center adj"
+                              >
+                                <div>Initial Bet</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row justify-content-center px-5">
+                          <div
+                            class="d-flex"
+                            *ngFor="let bet of Det_initialbet; let i = index"
+                          >
+                            <div class="mb-2 col pl-0">
+                              <div class="d-flex initial adj">
+                                <div
+                                  class="grey1 bf"
+                                  [ngStyle]="{ 'background-color': bet.color }"
+                                ></div>
+                                <div class="align-self-center ml-2">
+                                  {{ (bet.amount * 1).toFixed(4) }}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="seed-main">
+                          <div class="ui-input">
+                            <div class="input-label">
+                              <div
+                                class="seed-col d-flex justify-content-center adj"
+                              >
+                                <div>Final Result</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="d-flex"
+                          *ngFor="let result of Det_gameResult"
+                        >
+                          <div class="ui-input col pl-0">
+                            <div class="d-flex justify-content-center adj">
+                              <div
+                                class="grey2 bf"
+                                [ngStyle]="{ 'background-color': result.color }"
+                              >
+                                <div>
+                                  {{
+                                    result.color == "#cfdff7"
+                                      ? "2.00 X"
+                                      : result.color == "#773cfd"
+                                      ? "3.00 X"
+                                      : result.color == "#ff842e"
+                                      ? "6.00 X"
+                                      : result.color == "#7bc514"
+                                      ? "99.00 X"
+                                      : ""
+                                  }}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- roulette -->
+                      <div
+                        class="items d-flex justify-content-between"
+                        *ngIf="Det_name == 'roulette'"
+                      >
+                        <div class="rotateTable">
+                          <div id="resbetting_board">
+                            <div class="result_lines">
+                              <div class="bbtop">
+                                <div
+                                  class="resultcoin resbbtoptwo chipresultselect"
+                                  id="reshalf1"
+                                >
+                                  <span>1 to 18</span>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.half1 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.half1
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resbbtoptwo"
+                                  id="reshalf2"
+                                >
+                                  <span>19 to 36</span>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.half2 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.half2
+                                    }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="resnumber_board">
+                                <div class="resultcoin resnumber_0" id="res0">
+                                  <div class="nbn text-white">0</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num0 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num0
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res3"
+                                >
+                                  <div class="nbn text-white">3</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num3 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num3
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res6"
+                                >
+                                  <div class="nbn text-white">6</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num6 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num6
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res9"
+                                >
+                                  <div class="nbn text-white">9</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num9 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num9
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res12"
+                                >
+                                  <div class="nbn text-white">12</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num12 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num12
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res15"
+                                >
+                                  <div class="nbn">15</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num15 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num15
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res18"
+                                >
+                                  <div class="nbn">18</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num18 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num18
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res21"
+                                >
+                                  <div class="nbn">21</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num21 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num21
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res24"
+                                >
+                                  <div class="nbn">24</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num24 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num24
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res27"
+                                >
+                                  <div class="nbn">27</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num27 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num27
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res30"
+                                >
+                                  <div class="nbn">30</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num30 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num30
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res33"
+                                >
+                                  <div class="nbn">33</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num33 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num33
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res36"
+                                >
+                                  <div class="nbn">36</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num36 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num36
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resrestt1_block"
+                                  id="resrow1"
+                                >
+                                  <div class="nbn1">2:1</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.row1 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.row1
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res2"
+                                >
+                                  <div class="nbn">2</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num2 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num2
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res5"
+                                >
+                                  <div class="nbn">5</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num5 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num5
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res8"
+                                >
+                                  <div class="nbn">8</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num8 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num8
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res11"
+                                >
+                                  <div class="nbn">11</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num11 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num11
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res14"
+                                >
+                                  <div class="nbn">14</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num14 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num14
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res17"
+                                >
+                                  <div class="nbn">17</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num17 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num17
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res20"
+                                >
+                                  <div class="nbn">20</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num20 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num20
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res23"
+                                >
+                                  <div class="nbn">23</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num23 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num23
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res26"
+                                >
+                                  <div class="nbn">26</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num26 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num26
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res29"
+                                >
+                                  <div class="nbn">29</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num29 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num29
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res32"
+                                >
+                                  <div class="nbn">32</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num32 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num32
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res35"
+                                >
+                                  <div class="nbn">35</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num35 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num35
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resrestt1_block"
+                                  id="resrow2"
+                                >
+                                  <div class="nbn1">2:1</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.row2 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.row2
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res1"
+                                >
+                                  <div class="nbn">1</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num1 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num1
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res4"
+                                >
+                                  <div class="nbn">4</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num4 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num4
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res7"
+                                >
+                                  <div class="nbn">7</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num7 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num7
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res10"
+                                >
+                                  <div class="nbn">10</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num10 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num10
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res13"
+                                >
+                                  <div class="nbn">13</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num13 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num13
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res16"
+                                >
+                                  <div class="nbn">16</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num16 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num16
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res19"
+                                >
+                                  <div class="nbn">19</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num19 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num19
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res22"
+                                >
+                                  <div class="nbn">22</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num22 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num22
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res25"
+                                >
+                                  <div class="nbn">25</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num25 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num25
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res28"
+                                >
+                                  <div class="nbn">28</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num28 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num28
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block blackNum"
+                                  id="res31"
+                                >
+                                  <div class="nbn">31</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num31 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num31
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resnumber_block redNum"
+                                  id="res34"
+                                >
+                                  <div class="nbn">34</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.num34 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.num34
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resrestt1_block"
+                                  id="resrow3"
+                                >
+                                  <div class="nbn1">2:1</div>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.row3 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.row3
+                                    }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="resbo3_board">
+                                <div
+                                  class="resultcoin resbo3_block"
+                                  id="resseg1"
+                                >
+                                  <span>1 to 12</span>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.seg1 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.seg1
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resbo3_block"
+                                  id="resseg2"
+                                >
+                                  <span>13 to 24</span>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.seg2 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.seg2
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resbo3_block"
+                                  id="resseg3"
+                                >
+                                  <span>25 to 36 </span>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.seg3 < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.seg3
+                                    }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="resoto_board">
+                                <div
+                                  class="resultcoin resoto_block"
+                                  id="reseven"
+                                >
+                                  <span>EVEN</span>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.even < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.even
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resoto_block Nubred"
+                                  id="resred"
+                                >
+                                  <span> RED</span>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.red < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.red
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resoto_block Nubblack"
+                                  id="resblack"
+                                >
+                                  <span>BLACK</span>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.black < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.black
+                                    }}</span>
+                                  </div>
+                                </div>
+                                <div
+                                  class="resultcoin resoto_block"
+                                  id="resodd"
+                                >
+                                  <span> ODD </span>
+                                  <div
+                                    [ngClass]="
+                                      resultcoins.odd < 1000
+                                        ? 'chipresult blue'
+                                        : 'chipresult red'
+                                    "
+                                  >
+                                    <span class="chipSpanresult">{{
+                                      resultcoins.odd
+                                    }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="ui-input">
+                        <div class="input-control" *ngIf="Det_seedstatus == 0">
+                          <input
+                            class="form-control"
+                            type="text"
+                            placeholder="The Seed hasn't been revealed yet."
+                            readonly
+                          />
+                        </div>
+                        <div class="input-control" *ngIf="Det_seedstatus == 1">
+                          <input
+                            class="form-control"
+                            type="text"
+                            [value]="withouthashserver"
+                          />
+                        </div>
+                      </div>
+                      <div class="ui-input">
+                        <div class="input-label">
+                          <div class="seed-col">
+                            <div>Server Seed (hash)</div>
+                          </div>
+                        </div>
+                        <div class="input-control">
+                          <input
+                            type="text"
+                            class="form-control"
+                            readonly=""
+                            [value]="Det_serverSeed"
+                          />
+                        </div>
+                      </div>
+                      <div class="d-flex">
+                        <div class="ui-input col pl-0">
+                          <div class="input-label">Client Seed</div>
+                          <div
+                            class="input-control"
+                            *ngIf="Det_seedstatus == 0"
+                          >
+                            <input
+                              type="text"
+                              class="form-control"
+                              readonly
+                              [value]="Det_clientSeed"
+                            />
+                          </div>
+                          <div
+                            class="input-control"
+                            *ngIf="Det_seedstatus == 1"
+                          >
+                            <input
+                              type="text"
+                              class="form-control"
+                              readonly
+                              [value]="withouthashclient"
+                            />
+                          </div>
+                        </div>
+                        <div class="ui-input col pr-0">
+                          <div class="input-label">nonce</div>
+                          <div class="input-control">
+                            <input
+                              type="text"
+                              class="form-control"
+                              readonly=""
+                              [value]="Det_nounce"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex" *ngIf="Det_name == 'wheel'">
+                        <div class="ui-input col pl-0">
+                          <div class="input-label">Risk</div>
+                          <div class="input-control">
+                            <input
+                              type="text"
+                              class="form-control"
+                              readonly=""
+                              [value]="Det_risk"
+                            />
+                          </div>
+                        </div>
+                        <div class="ui-input col pr-0">
+                          <div class="input-label">Segment</div>
+                          <div class="input-control">
+                            <input
+                              type="text"
+                              class="form-control"
+                              readonly=""
+                              [value]="Det_segment"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

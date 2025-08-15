@@ -1,0 +1,156 @@
+<div class="popular-section">
+  <h2 class="title">
+    <svg
+      data-cy="ic-top"
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="sc-1x10e4w-1 kyLbrN bt107"
+      style="fill: rgb(255, 152, 32); color: inherit; width: auto; height: 32px"
+    >
+      <path
+        d="M18.8 9.73684C18.8 10.7537 18.2326 11.641 17.3904 12.1129L20.1822 15.8272C20.5377 16.3001 21.2239 16.3627 21.6591 15.9619L26.2786 11.707C25.9151 11.3301 25.6923 10.8221 25.6923 10.2632C25.6923 9.10052 26.6566 8.15796 27.8461 8.15796C29.0356 8.15796 30 9.10052 30 10.2632C30 11.4259 29.0356 12.3685 27.8461 12.3685C27.7679 12.3685 27.6907 12.3644 27.6147 12.3565L26.8677 19.1099C26.8117 19.6166 26.3835 20 25.8738 20H6.12146C5.61379 20 5.18667 19.6196 5.12813 19.1153L4.34403 12.3604C4.28136 12.3657 4.21793 12.3685 4.15385 12.3685C2.96431 12.3685 2 11.4259 2 10.2632C2 9.10052 2.96431 8.15796 4.15385 8.15796C5.34338 8.15796 6.30769 9.10052 6.30769 10.2632C6.30769 10.832 6.07693 11.3481 5.70192 11.7269L10.3413 15.9678C10.7769 16.3659 11.4608 16.3023 11.8154 15.8305L14.6096 12.113C13.7674 11.6411 13.2 10.7538 13.2 9.73684C13.2 8.22533 14.4536 7 16 7C17.5463 7 18.8 8.22533 18.8 9.73684Z"
+      ></path>
+      <path
+        d="M6.5 23C5.67157 23 5 23.6716 5 24.5C5 25.3284 5.67157 26 6.5 26H25.5C26.3284 26 27 25.3284 27 24.5C27 23.6716 26.3284 23 25.5 23H6.5Z"
+      ></path>
+    </svg>
+    Popular
+  </h2>
+
+  <!-- Category Tabs -->
+  <div class="tabs">
+    <div
+      class="button"
+      *ngFor="let cat of categories"
+      (click)="selectCategory(cat)"
+      [class.active]="cat.label === activeCategory"
+    >
+      <div class="icon">
+        <svg
+          data-cy="sport-soccer"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+          xmlns="http://www.w3.org/2000/svg"
+          class="sc-1x10e4w-1 jIPeBu"
+          style="fill: currentcolor; width: auto; height: 22px"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M11.04 21.3793C12.368 22.0323 13.8288 22.393 15.3425 22.4261L17.8734 19.5272C17.9026 17.8165 17.5076 16.1267 16.7246 14.6139L11.7195 13.4485C10.675 14.4949 9.86495 15.7551 9.35078 17.1439L11.04 21.3793ZM10.7764 22.204L9.08458 23.6141C10.9111 25.274 13.3374 26.2857 16 26.2857C16.511 26.2857 17.0133 26.2485 17.5043 26.1765L15.3359 23.2833C13.7356 23.25 12.1884 22.8783 10.7764 22.204ZM5.7343 16.6469H8.62297C9.20019 15.1755 10.086 13.8441 11.2164 12.7406V9.62205C10.2129 9.37945 9.1786 9.29054 8.14698 9.35692C6.6294 11.1491 5.71429 13.4677 5.71429 16C5.71429 16.2173 5.72102 16.433 5.7343 16.6469ZM22.9116 19.3483C23.8049 18.4384 24.5225 17.3714 25.0254 16.2017L23.6597 11.542C22.5016 10.9523 21.2395 10.587 19.9272 10.4698L17.6048 14.4567C18.3 15.8824 18.6825 17.4437 18.7275 19.033L22.9116 19.3483ZM23.4088 20.0636V23.1348C25.0358 21.4457 26.0906 19.2017 26.2613 16.7145L25.7741 16.6293C25.2096 17.9111 24.4065 19.0765 23.4088 20.0636ZM23.9985 9.53268C22.4866 7.66509 20.3338 6.33759 17.8747 5.88473C17.5281 6.28981 17.2149 6.71981 16.9371 7.17124L19.7454 9.596C21.1338 9.68779 22.4749 10.0354 23.7142 10.6149L23.9985 9.53268ZM16.0845 6.92604C16.3235 6.51838 16.5885 6.12608 16.8785 5.75128C16.5889 5.72678 16.2959 5.71429 16 5.71429C13.2876 5.71429 10.8204 6.76421 8.98261 8.47983C9.78915 8.49238 10.5923 8.59246 11.3784 8.77945C11.4114 8.75319 11.4487 8.73155 11.4894 8.71569L16.0845 6.92604ZM16 28C9.37258 28 4 22.6274 4 16C4 9.37258 9.37258 4 16 4C22.6274 4 28 9.37258 28 16C28 22.6274 22.6274 28 16 28Z"
+          ></path>
+        </svg>
+      </div>
+      <div>
+        {{ cat.label }}
+      </div>
+    </div>
+  </div>
+
+  <div class="betting-odds-container">
+    <div class="match-card" *ngFor="let match of matches">
+      <div class="match-row">
+        <div class="odd-section" style="width: 300px">
+          <div class="match-header">
+            <span>{{ match.league }}</span>
+          </div>
+          <div class="time">{{ match.date }}, {{ match.time }}</div>
+          <div class="team">
+            <img
+              [src]="match.team1Flag"
+              alt="{{ match.team1 }} flag"
+              class="flag-logo"
+            />
+            <span>{{ match.team1 }}</span>
+          </div>
+          <div class="team" style="margin-bottom: 10px">
+            <img
+              [src]="match.team2Flag"
+              alt="{{ match.team2 }} flag"
+              class="flag-logo"
+            />
+            <span>{{ match.team1 }}</span>
+          </div>
+        </div>
+        <div class="odd-side">
+          <div class="odd-section">
+            <div class="match-header">
+              <span>1X2</span>
+            </div>
+            <div class="odd-row">
+              <div class="odd">
+                <div class="odd-title">1</div>
+                <div class="odd-value">{{ match.odds["1"] }}</div>
+              </div>
+              <div class="odd">
+                <div class="odd-title">draw</div>
+                <div class="odd-value">
+                  {{ match.odds["2"] }}
+                </div>
+              </div>
+              <div class="odd">
+                <div class="odd-title">2</div>
+                <div class="odd-value">
+                  {{ match.odds["2"] }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="odd-section">
+            <div class="match-header">
+              <span>Double chances</span>
+            </div>
+            <div class="odd-row">
+              <div class="odd">
+                <div class="odd-title">1</div>
+                <div class="odd-value">{{ match.odds["1"] }}</div>
+              </div>
+              <div class="odd">
+                <div class="odd-title">draw</div>
+                <div class="odd-value">
+                  {{ match.odds["2"] }}
+                </div>
+              </div>
+              <div class="odd">
+                <div class="odd-title">2</div>
+                <div class="odd-value">
+                  {{ match.odds["2"] }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="odd-section">
+            <div class="match-header">
+              <span>Total</span>
+            </div>
+            <div class="odd-row">
+              <div class="odd">
+                <div class="odd-title">1</div>
+                <div class="odd-value">{{ match.odds["1"] }}</div>
+              </div>
+              <div class="odd">
+                <div class="odd-title">draw</div>
+                <div class="odd-value">
+                  {{ match.odds["2"] }}
+                </div>
+              </div>
+              <div class="odd">
+                <div class="odd-title">2</div>
+                <div class="odd-value">
+                  {{ match.odds["2"] }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="flex: 1; height: 20px">
+            <div class="match-header" style="flex: 1; height: 30px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

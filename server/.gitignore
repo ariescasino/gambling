@@ -1,0 +1,6 @@
+node_modules
+package-lock.json
+logs
+# config/development.js
+config/production.js
+uploads

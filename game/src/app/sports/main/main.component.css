@@ -1,0 +1,46 @@
+.main-content {
+  /* width: 100%;
+  overflow-x: hidden; */
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.tabs {
+  display: flex;
+  margin-top: 15px;
+  gap: 10px;
+  border-radius: 12px;
+  padding: 4px 12px;
+}
+
+@media (max-width: 700px) {
+  .main-content {
+    overflow-y: visible;
+    height: auto;
+  }
+  .tabs {
+    display: none;
+  }
+}
+
+.tabs button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  color: rgba(225, 225, 225, 0.5);
+  background-color: #292d2e;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.tabs button.active {
+  background-color: #3a4142;
+  color: white;
+}
+
+.tabs button svg {
+  margin-right: 10px;
+}
