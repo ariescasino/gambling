@@ -1,0 +1,277 @@
+# Upgrade The Base Packages
+apt-get update
+apt-get upgrade -y
+
+# See: https://redis.io/docs/getting-started/installation/install-redis-on-linux/
+curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+
+# Update Package Lists
+apt-get update
+
+# Base Packages
+add-apt-repository universe -y
+
+apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes build-essential curl pkg-config fail2ban gcc g++ git libmcrypt4 libpcre3-dev \
+make python3 python3-pip sendmail supervisor ufw zip unzip whois zsh ncdu uuid-runtime acl libpng-dev libmagickwand-dev libpcre2-dev cron jq net-tools
+
+# Install Python Httpie
+
+pip3 install httpie
+
+# Install AWSCLI
+
+pip3 install awscli awscli-plugin-endpoint
+
+# Set The Timezone
+ln -sf /usr/share/zoneinfo/UTC /etc/localtime
+
+# Setup UFW Firewall
+ufw allow 22
+ufw allow 80
+ufw allow 443
+ufw --force enable
+
+#Install mongodb database
+#Just follow the instruction on the link below, it's very clear
+Ubuntu 20.04: https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/ // this install version 7.x
+Ubuntu 22.04: https://tecadmin.net/how-to-install-mongodb-on-ubuntu-22-04/ // this installs version 6.x
+
+If you installed version 6.x make sure to run the following:
+echo "mongodb-org hold" | sudo dpkg --set-selections
+echo "mongodb-org-database hold" | sudo dpkg --set-selections
+echo "mongodb-org-server hold" | sudo dpkg --set-selections
+echo "mongodb-mongosh hold" | sudo dpkg --set-selections
+echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
+echo "mongodb-org-tools hold" | sudo dpkg --set-selections
+
+It's needed because mongodb might unintentionally upgrade and that's going to break your system. As of now(30.9.2023.) Mongodb 7.x packages and keys are acting strange on
+Ubuntu 22.04 hence we go with 6.x, the difference is negligible.
+
+# Configure Gzip
+cat > /etc/nginx/conf.d/gzip.conf << EOF
+gzip_comp_level 5;
+gzip_min_length 256;
+gzip_proxied any;
+gzip_vary on;
+gzip_http_version 1.1;
+
+gzip_types
+application/atom+xml
+application/javascript
+application/json
+application/ld+json
+application/manifest+json
+application/rss+xml
+application/vnd.geo+json
+application/vnd.ms-fontobject
+application/x-font-ttf
+application/x-web-app-manifest+json
+application/xhtml+xml
+application/xml
+font/opentype
+image/bmp
+image/svg+xml
+image/x-icon
+text/cache-manifest
+text/css
+text/plain
+text/vcard
+text/vnd.rim.location.xloc
+text/vtt
+text/x-component
+text/x-cross-domain-policy;
+
+EOF
+
+curl --silent --location https://deb.nodesource.com/setup_18.x | bash - 
+apt-get update
+sudo apt-get install -y --force-yes nodejs
+npm install -g pm2
+npm install -g gulp
+npm install -g yarn
+
+# Install & Configure Redis Server
+apt-get install -y redis-server
+sed -i 's/bind 127.0.0.1/bind 0.0.0.0/' /etc/redis/redis.conf
+service redis-server restart
+systemctl enable redis-server
+
+# Configure Supervisor Autostart
+systemctl enable supervisor.service
+service supervisor start
+
+# Disable protected_regular
+sudo sed -i "s/fs.protected_regular = .*/fs.protected_regular = 0/" /usr/lib/sysctl.d/protect-links.conf
+
+sysctl --system
+
+
+# Setup Unattended Security Upgrades
+apt-get install -y --force-yes unattended-upgrades
+
+cat > /etc/apt/apt.conf.d/50unattended-upgrades << EOF
+Unattended-Upgrade::Allowed-Origins {
+    "Ubuntu focal-security";
+};
+Unattended-Upgrade::Package-Blacklist {
+    //
+};
+EOF
+
+cat > /etc/apt/apt.conf.d/10periodic << EOF
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Download-Upgradeable-Packages "1";
+APT::Periodic::AutocleanInterval "7";
+APT::Periodic::Unattended-Upgrade "1";
+EOF
+
+#SSL certificate, we're going to follow this https://www.inmotionhosting.com/support/website/ssl/lets-encrypt-ssl-ubuntu-with-certbot/
+sudo apt install python3 python3-venv libaugeas0
+sudo python3 -m venv /opt/certbot/
+sudo /opt/certbot/bin/pip install --upgrade pip
+sudo /opt/certbot/bin/pip install certbot certbot-nginx
+sudo ln -s /opt/certbot/bin/certbot /usr/bin/certbot
+
+Now we're all set to deploy application
+
+
+Following are nginx conf files we're using:
+
+/etc/cnginx/sites-available/democasino.online
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/democasino.online/dist/game;
+
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name democasino.online www.democasino.online;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ /index.html;
+        }
+}
+
+/etc/nginx/sites-available/api.democasino.online
+
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/;
+
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name api.democasino.online www.api.democasino.online;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                 proxy_pass http://localhost:13578;
+                 proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                 proxy_set_header Connection 'upgrade';
+                 proxy_set_header Host $host;
+                proxy_cache_bypass $http_upgrade;
+        }
+}
+
+/etc/nginx/sites-available/adminapi.democasino.online
+
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/;
+
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name adminapi.democasino.online www.adminapi.democasino.online;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                        proxy_pass http://localhost:29188;
+                 proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                 proxy_set_header Connection 'upgrade';
+                 proxy_set_header Host $host;
+                proxy_cache_bypass $http_upgrade;
+        }
+}
+
+/etc/nginx/sites-available/admin.democasino.online
+
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/admin.democasino.online/dist;
+
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name admin.democasino.online www.admin.democasino.online;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ /index.html;
+        }
+}
+
+above are the nginx configuration files, create them, check whether everything is fine with conf with: "nginx -t"
+if everythings fine proceed to create simlinks with:
+ln -s /etc/nginx/sites-available/democasino.online /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/api.democasino.online /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/adminapi.democasino.online /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/admin.democasino.online /etc/nginx/sites-enabled/
+
+restart nginx with: systemctl restart nginx
+
+upload files to your server, in the uploaded directory you should have 4 directories: casino backend api, casino frontend, casino admin backend api and casino admin frontend
+position yourself in the directory where you uploaded files
+
+export NODE_ENV=prodution // development if you want to use development configuration, look below for more details
+
+mkdir /var/www/democasino.online
+mv frontend/* /var/www/democasino.online
+nano /var/www/democasino.online/src/backendurl.js and setup the correct backend url
+chmod -R 777 /var/www/democasino.online
+npm install
+npm run build
+
+mkdir /var/www/api.democasino.online
+mv backend/* /var/www/api.democasino.online
+nano app.js and add correct CORS domain(this line, const io = require('socket.io')(server,{cors: {origins: ['localhost:4200:*', 'localhost:1201:*', 'democasino.online:*']}} use your domain)
+nano config/prodution.js and add your mongodb url(module.exports = {  dbconnection: 'mongodb://127.0.0.1:27017/rollbit' } this is mine), do the same in development.js if you plan to use app in dev env
+npm install 
+nohup node app.js & disown (or pm2 start app.js)
+
+mkdir /var/www/admin.democasino.online
+mv admin-frontend/* /var/www/admin.democasino.online
+nano /var/www/admin.democasino.online/src/backendurl.js and setup the correct backend url
+
+chmod -R 777 /var/www/admin.democasino.online
+npm install
+npm run build
+
+mkdir /var/www/adminapi.democasino.online
+mv admin-api/* /var/www/adminapi.democasino.online
+nano config/prodution.js and add your mongodb url(module.exports = {  dbconnection: 'mongodb://127.0.0.1:27017/rollbit' } this is mine), do the same in development.js if you plan to use app in dev env
+npm install
+nohup node app.js & disown (or pm2 start app.js)
+
+that should be it, now your app should be visible online
+
+
+Disclaimer, this is by no means an extensive production deployment guide, this is meant to be a a proof of concept setup just to deploy app and give you an idea how to deploy it.
+For real production deployment you should use HTTPS, cloudflare and probably want to have your app(frontend, backend, admin frontend and admin backend directories) in a single directory that's
+connected with remote git directory so that CI/CD is possible.
